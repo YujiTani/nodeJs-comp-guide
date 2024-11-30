@@ -26,9 +26,20 @@ import { chromium } from "@playwright/test";
 	const anckerAllTexts = await anckerLocator.allInnerTexts()
 	console.log(anckerAllTexts[0])
 
+	// input要素の取得・入力
 	const linkTextLocator = page.locator(".cards.list-group-item > a >> nth=0")
 	const linkText = await linkTextLocator.innerText()
 	console.log(linkText)
 
-	await browser.close()
+
+	// input入力で、要素の検索、ページャー操作で異なるページの要素一覧取得
+	// 少し操作を待つように変更
+	page.waitForTimeout(2000)
+
+	// input要素に値を入力
+	const inputLocator = page.locator('xpath=//*[@id="__next"]/div/div[1]/label/input')
+	await inputLocator.type('美穂')
+
+
+	// await browser.close()
 })()
