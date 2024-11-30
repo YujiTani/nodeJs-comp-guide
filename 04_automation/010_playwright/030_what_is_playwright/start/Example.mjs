@@ -7,10 +7,9 @@ import { chromium } from "@playwright/test";
 	// 新規のページを作成
 	const page = await browser.newPage()
 	await page.goto('http://localhost:3000')
+	const pageTitleLocator = page.locator('.navbar-brand')
+	const pageTitle = await pageTitleLocator.innerText()
+	console.log(pageTitle);
 
-	// ページのHTML情報を取得
-	const htmlStr = await page.content()
-
-	// ブラウザを閉じる
 	browser.close()
-})
+})()
