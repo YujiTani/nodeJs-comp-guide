@@ -9,7 +9,12 @@ import { chromium } from "@playwright/test";
 	await page.goto('http://localhost:3000')
 	const pageTitleLocator = page.locator('.navbar-brand')
 	const pageTitle = await pageTitleLocator.innerText()
-	console.log(pageTitle);
+	console.log('pageText', pageTitle);
 
-	browser.close()
+	const pageTextLocator = page.locator("text=名刺管理アプリ")
+	const pageText = await pageTextLocator.innerText()
+	console.log('pageText', pageText)
+
+
+	await browser.close()
 })()
