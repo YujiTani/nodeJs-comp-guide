@@ -21,5 +21,14 @@ import { chromium } from "@playwright/test";
 	const xpathText = await xpathTextLocator.innerText()
 	console.log('xpathText', xpathText)
 
+	// aタグの要素を取得
+	const anckerLocator = page.locator(".cards.list-group-item > a")
+	const anckerAllTexts = await anckerLocator.allInnerTexts()
+	console.log(anckerAllTexts[0])
+
+	const linkTextLocator = page.locator(".cards.list-group-item > a >> nth=0")
+	const linkText = await linkTextLocator.innerText()
+	console.log(linkText)
+
 	await browser.close()
 })()
