@@ -34,12 +34,19 @@ import { chromium } from "@playwright/test";
 
 	// input入力で、要素の検索、ページャー操作で異なるページの要素一覧取得
 	// 少し操作を待つように変更
-	page.waitForTimeout(2000)
+	// page.waitForTimeout(2000)
 
 	// input要素に値を入力
-	const inputLocator = page.locator('xpath=//*[@id="__next"]/div/div[1]/label/input')
-	await inputLocator.type('美穂')
+	// const inputLocator = page.locator('xpath=//*[@id="__next"]/div/div[1]/label/input')
+	// await inputLocator.type('美穂')
 
+	// paget操作
+	const pagerLocator = page.locator('.page-link.page-number >> nth=2')
+	await pagerLocator.click()
+
+	const cardListLocator = page.locator(".cards.list-group-item")
+	const cardListCount = await cardListLocator.count()
+	console.log(cardListCount)
 
 	// await browser.close()
 })()
