@@ -41,12 +41,22 @@ import { chromium } from "@playwright/test";
 	// await inputLocator.type('美穂')
 
 	// paget操作
-	const pagerLocator = page.locator('.page-link.page-number >> nth=2')
-	await pagerLocator.click()
+	// const pagerLocator = page.locator('.page-link.page-number >> nth=2')
+	// await pagerLocator.click()
 
 	const cardListLocator = page.locator(".cards.list-group-item")
 	const cardListCount = await cardListLocator.count()
 	console.log(cardListCount)
+
+
+	// 佐藤さんで検索し、最後の要素を取得する
+	page.waitForTimeout(1000)
+
+	const inputLocator = page.locator('xpath=//*[@id="__next"]/div/div[1]/label/input')
+	await inputLocator.type('佐藤')
+
+	const searchListLocator = page.locator('.cards.list-group-item >> nth=-1')
+	console.log(await searchListLocator.innerText())
 
 	// await browser.close()
 })()
